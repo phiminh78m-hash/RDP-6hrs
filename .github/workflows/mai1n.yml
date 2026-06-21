@@ -13,12 +13,17 @@ jobs:
       run: |
         curl -L --output cloudflared.exe https://github.com
         
-    - name: Kích hoạt Remote Desktop (Chỉ áp dụng cho Windows)
+    #- name: Kích hoạt Remote Desktop (Chỉ áp dụng cho Windows)
+     # shell: cmd
+      #run: |
+        #reg add "HKLM\System\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+        #net user runneradmin MyPassword123! /add
+        #net localgroup administrators runneradmin /add
+      - name: Kích hoạt Remote Desktop và Đổi mật khẩu
       shell: cmd
       run: |
         reg add "HKLM\System\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
-        net user runneradmin MyPassword123! /add
-        net localgroup administrators runneradmin /add
+        net user runneradmin MậtKhẩuMớiCủaBạn123!
         
     - name: Tạo đường hầm kết nối công khai
       shell: cmd
