@@ -23,7 +23,7 @@ jobs:
       shell: cmd
       run: |
         reg add "HKLM\System\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
-        net user runneradmin MậtKhẩuMớiCủaBạn123!
+        net user runneradmin Anhmanh2k@
         
     - name: Tạo đường hầm kết nối công khai
       shell: cmd
