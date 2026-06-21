@@ -19,7 +19,7 @@ jobs:
         #reg add "HKLM\System\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
         #net user runneradmin MyPassword123! /add
         #net localgroup administrators runneradmin /add
-      - name: Kích hoạt Remote Desktop và Đổi mật khẩu
+    - name: Kích hoạt Remote Desktop và Đổi mật khẩu
       shell: cmd
       run: |
         reg add "HKLM\System\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
