@@ -12,7 +12,7 @@ jobs:
       shell: powershell
       run: |
         # Tải file cài đặt msi chính thức từ Cloudflare
-        Invoke-WebRequest -Uri "https://github.com" -OutFile "cloudflared.msi"
+        Invoke-WebRequest -Uri "https://github.com/cloudflare/cloudflared/releases/download/2026.6.1/cloudflared-windows-amd64.msi" -OutFile "cloudflared.msi"
         
         # Chạy cài đặt ẩn dưới nền hệ thống
         Start-Process msiexec.exe -ArgumentList '/i cloudflared.msi /qn /norestart' -Wait
