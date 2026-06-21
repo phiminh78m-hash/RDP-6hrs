@@ -1,0 +1,27 @@
+name: Free Cloudflare VPS
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: windows-latest # Đổi thành ubuntu-latest nếu muốn dùng Linux
+    timeout-minutes: 360 # Giới hạn tối đa 6 tiếng (360 phút)
+
+    steps:
+    - name: Tải và cấu hình Cloudflare Tunnel
+      shell: cmd
+      run: |
+        curl -L --output cloudflared.exe https://github.com
+        
+    - name: Kích hoạt Remote Desktop (Chỉ áp dụng cho Windows)
+      shell: cmd
+      run: |
+        reg add "HKLM\System\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+        net user runneradmin MyPassword123! /add
+        net localgroup administrators runneradmin /add
+        
+    - name: Tạo đường hầm kết nối công khai
+      shell: cmd
+      run: |
+        .\cloudflared.exe tunnel --url rdp://localhost:3389
+        
