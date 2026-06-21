@@ -8,10 +8,14 @@ jobs:
     timeout-minutes: 360 # Giới hạn tối đa 6 tiếng (360 phút)
 
     steps:
-    - name: Tải và cấu hình Cloudflare Tunnel
-      shell: cmd
+    - name: Tải và cài đặt Cloudflare Tunnel x64
+      shell: powershell
       run: |
-        curl -L --output cloudflared.exe https://github.com
+        # Tải file cài đặt msi chính thức từ Cloudflare
+        Invoke-WebRequest -Uri "https://github.com" -OutFile "cloudflared.msi"
+        
+        # Chạy cài đặt ẩn dưới nền hệ thống
+        Start-Process msiexec.exe -ArgumentList '/i cloudflared.msi /qn /norestart' -Wait
         
     #- name: Kích hoạt Remote Desktop (Chỉ áp dụng cho Windows)
      # shell: cmd
